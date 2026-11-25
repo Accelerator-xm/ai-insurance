@@ -1,0 +1,9 @@
+# 可选的本地学习环境：Silo 是兼容 MinIO 的独立社区分支。
+# 原 MinIO 镜像已无法匿名拉取；保留服务名、连接参数及数据卷配置。
+# 与 docker-compose.yml 一起使用，具体命令见 README.md。
+services:
+  minio:
+    image: docker.io/pgsty/silo:RELEASE.2026-11-12T00-00-00Z
+    command: silo server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "silo", "healthcheck", "ready"]
